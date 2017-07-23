@@ -22,6 +22,7 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.4",
     "html-webpack-plugin": "^2.29.0",
+    "react-hot-loader": "^3.0.0-beta.7",
     "style-loader": "^0.18.2",
     "webpack": "^3.3.0",
     "webpack-dev-server": "^2.6.1"
