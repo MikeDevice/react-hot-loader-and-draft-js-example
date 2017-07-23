@@ -1,13 +1,32 @@
 import React, { Component } from 'react';
-import { Editor, EditorState } from 'draft-js';
+import { Editor, EditorState, CompositeDecorator } from 'draft-js';
 
 import '../../node_modules/draft-js/dist/Draft.css';
+
+
+function HandleSpan({ children }) {
+  return <span>{children}</span>
+}
+
+function handleStrategy(contentBlock, callback) {
+  const text = contentBlock.getText();
+  console.log(text);
+  callback(0, 1);
+}
+
 
 export default class MyEditor extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { editorState: EditorState.createEmpty() };
+    const compositeDecorator = new CompositeDecorator([
+      {
+        strategy: handleStrategy,
+        component: HandleSpan,
+      },
+    ]);
+
+    this.state = { editorState: EditorState.createEmpty(compositeDecorator) };
     this.onChange = editorState => this.setState({editorState});
   }
 
